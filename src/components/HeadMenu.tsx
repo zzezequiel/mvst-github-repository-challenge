@@ -17,7 +17,7 @@ const HeadMenu = ({ onOpen, ...rest }: HeadMenuProps) => {
         borderBottomWidth="1px"
         borderTopWidth="1px"
         borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-        justifyContent={{ base: 'space-between', md: 'flex-end' }}
+        justifyContent={{ base: 'space-between', md: 'center' }}
         {...rest}>
         <IconButton
           display={{ base: 'flex', md: 'none' }}

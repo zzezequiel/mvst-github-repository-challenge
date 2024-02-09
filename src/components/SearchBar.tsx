@@ -1,6 +1,7 @@
 import { useUser } from '@/Context/UserContext';
 import { gql, useLazyQuery } from '@apollo/client';
-import { Flex, IconButton, Input } from '@chakra-ui/react'
+import { Avatar, Box, Fade, Flex, IconButton, Input, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import Link from 'next/link';
 import React, { useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
 
@@ -35,16 +36,16 @@ const SearchBar = () => {
     const handleSearch = () => {
         searchUsers({ variables: { queryString: searchTerm } });
     };
-    
+
 
     const { setSelectedUsername } = useUser();
 
-  const saveUserIncontext = (username:string) => {
-    setSelectedUsername(username);
-  };
+    const saveUserIncontext = (username: string) => {
+        setSelectedUsername(username);
+    };
     return (
-        <>
-            <Flex>
+        <Box width={"2xl"} >
+            <Flex gap={2}>
                 <Input
                     type="text"
                     value={searchTerm}
@@ -58,16 +59,33 @@ const SearchBar = () => {
             {error && <p>Error: {error.message}</p>}
 
             {data && (
-                <ul>
-                    {data.search.nodes.map((user: any) => (
-                        <li key={user.login} onClick={() => saveUserIncontext(user.login)}>
-                            <img src={user.avatarUrl} alt="Avatar" />
-                            <a href={`https://github.com/${user.login}`}>{user.login}</a>
-                        </li>
-                    ))}
-                </ul>
+
+                <TableContainer position={"absolute"} width={"2xl"} borderRadius="md">
+                    <Table variant='striped' colorScheme='blue' >
+                        <TableCaption>Results</TableCaption>
+                        <Thead>
+                            <Tr>
+                                <Th></Th>
+                                <Th></Th>
+                            </Tr>
+                        </Thead>
+                        <Tbody borderRadius="md">
+                            {data.search.nodes.map((user: any) => (
+                                <Tr key={user.login} onClick={() => saveUserIncontext(user.login)} borderRadius="md">
+                                    <Td borderRadius="md">
+                                        <Avatar src={user.avatarUrl}/>
+                                    </Td>
+                                    <Td borderRadius="md">
+                                        <Link href={`https://github.com/${user.login}`}>{user.login}</Link>
+                                    </Td>
+                                </Tr>
+                            ))}
+                        </Tbody>
+                    </Table>
+                </TableContainer>
+
             )}
-        </>
+        </Box>
     )
 }
 
