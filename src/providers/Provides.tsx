@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -33,5 +33,5 @@ export function Providers({ children }: { children: React.ReactNode }) {
       </UserProvider>
     </ApolloProvider>
 
-  );
+  )
 }

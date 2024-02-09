@@ -13,5 +13,5 @@ export default function Home() {
       </Head>
       <HomePage />
     </HomeLayaout>
-  );
+  )
 }

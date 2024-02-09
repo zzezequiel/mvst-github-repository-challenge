@@ -92,7 +92,7 @@ const SearchBar = () => {
         {data && (
 
 
-          <MenuList w={"lg"}>
+          <MenuList w={"l"}>
 
             {data.search.nodes.map((user: any) => (
               <MenuItem key={user.login} onClick={() => handleUserIncontext(user, "POST")} borderRadius="md" gap={5}>

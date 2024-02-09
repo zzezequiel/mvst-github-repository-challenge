@@ -23,7 +23,7 @@ export const UserProvider = ({ children }: any) => {
 export const useUser = (): UserContextType => {
     const context = useContext(UserContext);
     if (!context) {
-        throw new Error('useUser should be initialized inside useProvider');
+        throw new Error('useUser should be initialized inside useProvider')
     }
-    return context;
-};
+    return context
+}

@@ -6,6 +6,7 @@ import { useUser } from '@/Context/UserContext';
 import { Repository } from '@/types/repositories';
 import { FiChevronDown, FiStar } from 'react-icons/fi';
 import { formatDistanceToNow } from 'date-fns';
+import useDeviceWidth from '@/Hooks/deviceWidth';
 
 
 
@@ -40,6 +41,7 @@ const RepositoriesList = () => {
    *  I use "useQuery" just because the method first searh in cache if tje query was made before, so it prevent to make the query again.
    */
   const { selectedUser } = useUser();
+  const device = useDeviceWidth()
   const { loading, error, data, refetch } = useQuery(GET_USER_REPOS, {
     variables: { username: selectedUser?.login },
     skip: !selectedUser // Evita realizar la consulta si no hay un usuario seleccionado
@@ -82,7 +84,7 @@ const RepositoriesList = () => {
 
   console.log("ACTUALREPOS", repositories)
   return (
-    repositories ?
+    repositories && (
       <Box>
         <Flex alignItems="center" mb={4}>
           <Select placeholder="Filter" onChange={(e) => handleFilterByLanguage(e.target.value)}>
@@ -98,18 +100,18 @@ const RepositoriesList = () => {
         </Flex>
         {repositories.map((repo: Repository) => (
 
-          <Stack key={repo.url} pb={10} px={10} width={"full"} borderBottomWidth="1px" mt={2}>
+          <Stack key={repo.url} pb={10} px={device==="mobile"?0:10} width={"full"} borderBottomWidth="1px" mt={2}>
 
             {/* FIRST ROW OF THE CARD */}
             <Flex alignItems={"center"} justifyContent={"space-between"} >
               <Box>
                 <Flex alignItems={"center"} gap={2}>
                   <Heading color={"blue.600"} as={"h3"} fontSize={"xl"}>{repo.name}</Heading>
-                  <Tag variant='outline' borderRadius='full'>Public</Tag>
+                  {device==="desktop"&&<Tag variant='outline' borderRadius='full'>Public</Tag>}
                 </Flex>
               </Box>
 
-              <Box>
+              {device==="desktop"&&<Box>
                 <Flex>
 
                   <Button leftIcon={<FiStar />} variant='outline'>
@@ -117,7 +119,7 @@ const RepositoriesList = () => {
                   </Button>
                   <IconButton aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
                 </Flex>
-              </Box>
+              </Box>}
             </Flex>
 
             {/* SECOND ROW OF THE CARD */}
@@ -137,9 +139,8 @@ const RepositoriesList = () => {
           </Stack>
         ))}
       </Box>
-      :
-      <></>
-  );
-};
+    )
+  )
+}
 
 export default RepositoriesList;
