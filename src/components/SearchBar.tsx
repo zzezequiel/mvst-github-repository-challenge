@@ -1,9 +1,9 @@
 import { useUser } from '@/Context/UserContext';
 import { gql, useLazyQuery } from '@apollo/client';
-import { Avatar, Box, Fade, Flex, IconButton, Input, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import { Avatar, Box, Button, Fade, Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import Link from 'next/link';
 import React, { useState } from 'react'
-import { FiSearch } from 'react-icons/fi'
+import { FiArrowLeft, FiLoader, FiSearch } from 'react-icons/fi'
 
 interface Props { }
 
@@ -38,53 +38,53 @@ const SearchBar = () => {
     };
 
 
-    const { setSelectedUsername } = useUser();
+    const { setSelectedUsername, selectedUsername } = useUser();
 
-    const saveUserIncontext = (username: string) => {
-        setSelectedUsername(username);
+    const handleUserIncontext = (username: string, method: string) => {
+
+       method==="POST"&& setSelectedUsername(username);
+       method==="DELETE"&& setSelectedUsername(null);
     };
     return (
-        <Box width={"2xl"} >
+        <Box width={"lg"} ml={2}>
+            <Menu>
             <Flex gap={2}>
+                {
+                 loading?<IconButton aria-label='Loading' icon={<FiLoader />} /> 
+                 : 
+                 !selectedUsername ?
+                 <MenuButton onClick={handleSearch} as={Button} rightIcon={<FiSearch />} />  
+                :
+                <IconButton aria-label='Back-home' icon={<FiArrowLeft />}  onClick={()=> handleUserIncontext(selectedUsername, "DELETE")}/>
+                }
                 <Input
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search users"
                 />
-                <IconButton onClick={handleSearch} aria-label='Search database' icon={<FiSearch />} />
             </Flex>
 
-            {loading && <p>Loading...</p>}
+            
             {error && <p>Error: {error.message}</p>}
 
             {data && (
 
-                <TableContainer position={"absolute"} width={"2xl"} borderRadius="md">
-                    <Table variant='striped' colorScheme='blue' >
-                        <TableCaption>Results</TableCaption>
-                        <Thead>
-                            <Tr>
-                                <Th></Th>
-                                <Th></Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody borderRadius="md">
+                
+                        <MenuList w={"lg"}>
+
                             {data.search.nodes.map((user: any) => (
-                                <Tr key={user.login} onClick={() => saveUserIncontext(user.login)} borderRadius="md">
-                                    <Td borderRadius="md">
+                                <MenuItem key={user.login} onClick={() => handleUserIncontext(user.login, "POST")} borderRadius="md" gap={5}>
                                         <Avatar src={user.avatarUrl}/>
-                                    </Td>
-                                    <Td borderRadius="md">
-                                        <Link href={`https://github.com/${user.login}`}>{user.login}</Link>
-                                    </Td>
-                                </Tr>
+                                        <Text fontSize="lg">{user.login}</Text>
+                                </MenuItem>
                             ))}
-                        </Tbody>
-                    </Table>
-                </TableContainer>
+                    
+                            </MenuList>
 
             )}
+            </Menu>
+
         </Box>
     )
 }
