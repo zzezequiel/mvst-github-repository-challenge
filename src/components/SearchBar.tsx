@@ -70,12 +70,12 @@ const SearchBar = () => {
              * Button to restart the context. 
              */
             selectedUser &&
-            <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","0px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Back-home' icon={<FiArrowLeft />} onClick={() => handleUserIncontext(selectedUser, "DELETE")} />
+            <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px","1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Back-home' icon={<FiArrowLeft />} onClick={() => handleUserIncontext(selectedUser, "DELETE")} />
           }
           {
-            loading ? <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","0px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Loading' icon={<FiLoader />} />
+            loading ? <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px","1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Loading' icon={<FiLoader />} />
               :
-              <MenuButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","0px")} borderColor={useColorModeValue('gray.300', 'gray.700')} onClick={handleSearch} as={Button}><FiSearch /></MenuButton>
+              <MenuButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px","1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} onClick={handleSearch} as={Button}><FiSearch /></MenuButton>
           }
 
           <Input

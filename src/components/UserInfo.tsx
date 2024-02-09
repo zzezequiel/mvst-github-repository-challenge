@@ -32,7 +32,7 @@ const UserInfo = () => {
 
                 <Stack mt={5}>
                     <Flex alignItems={"center"} gap={2}>
-                        <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","px")} borderColor={useColorModeValue('gray.300', 'gray.700')} width='full'>Follow</Button>
+                        <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px","1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} width='full'>Follow</Button>
                         <BsThreeDots size={20} />
                     </Flex>
                 </Stack>

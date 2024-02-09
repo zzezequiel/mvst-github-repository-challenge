@@ -102,7 +102,7 @@ const RepositoriesList = () => {
           (
             <Box>
               <Flex alignItems="center" mb={4}>
-                <Select backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')} placeholder="Filter" onChange={(e) => handleFilterByLanguage(e.target.value)}  width={{ base: '95%', md: '20%' }}>
+                <Select backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.100', 'gray.700')} placeholder="Filter" onChange={(e) => handleFilterByLanguage(e.target.value)}  width={{ base: '95%', md: '20%' }}>
                   <option value="All">All</option>
                   <option value="JavaScript">Javascript</option>
                   <option value="TypeScript">TypeScript</option>
@@ -110,7 +110,7 @@ const RepositoriesList = () => {
                   <option value=".NET">.NET</option>
                   <option value="C#">C#</option>
                 </Select>
-                <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","0px")} borderColor={useColorModeValue('gray.300', 'gray.700')} ml={4} onClick={handleSortByName}>Sort from A-Z</Button>
+                <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px","1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} ml={4} onClick={handleSortByName}>Sort from A-Z</Button>
               </Flex>
               {repositories.map((repo: Repository) => (
 
@@ -127,10 +127,10 @@ const RepositoriesList = () => {
 
                     {device === "desktop" && <Box>
                       <Flex alignItems={"center"}>
-                        <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')}  borderEndRadius={0} borderRightWidth={"1px"} borderRightColor={useColorModeValue('gray.300', 'gray.700')} leftIcon={<FiStar />} variant='outline'>
+                        <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.100', 'gray.700')}  borderEndRadius={0} borderRightWidth={"1px"} borderRightColor={useColorModeValue('gray.300', 'gray.700')} leftIcon={<FiStar />} variant='outline'>
                           Star
                         </Button>
-                        <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')} borderLeftRadius={0} aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
+                        <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.100', 'gray.700')} borderLeftRadius={0} aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
                       </Flex>
                     </Box>}
                   </Flex>

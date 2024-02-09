@@ -30,7 +30,7 @@ const Navbar: React.FC = ()=> {
     <>
       <Box bg={useColorModeValue('white', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <FiGithub />
+          <FiGithub size={30}/>
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
