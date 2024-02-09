@@ -1,12 +1,13 @@
 // RepositoriesList.js
 import { useEffect, useState } from 'react';
 import { useLazyQuery, gql, useQuery } from '@apollo/client';
-import { Box, List, ListItem, Link, Spinner, Stack, Flex, Heading, Button, Tag, IconButton, Text, Select } from '@chakra-ui/react';
+import { Box, List, ListItem, Link, Spinner, Stack, Flex, Heading, Button, Tag, IconButton, Text, Select, Skeleton } from '@chakra-ui/react';
 import { useUser } from '@/Context/UserContext';
 import { Repository } from '@/types/repositories';
 import { FiChevronDown, FiStar } from 'react-icons/fi';
 import { formatDistanceToNow } from 'date-fns';
 import useDeviceWidth from '@/Hooks/deviceWidth';
+import TrendingRepos from './TrendingRepos';
 
 
 
@@ -60,10 +61,9 @@ const RepositoriesList = () => {
 
 
   if (!selectedUser) {
-    return <p>Select a user</p>;
+    return <TrendingRepos />;
   }
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
 
@@ -84,62 +84,79 @@ const RepositoriesList = () => {
 
   console.log("ACTUALREPOS", repositories)
   return (
-    repositories && (
-      <Box>
-        <Flex alignItems="center" mb={4}>
-          <Select placeholder="Filter" onChange={(e) => handleFilterByLanguage(e.target.value)}>
-            <option value="All">All</option>
-            <option value="JavaScript">Javascript</option>
-            <option value="TypeScript">TypeScript</option>
-            <option value="SQL">SQL</option>
-            <option value=".NET">.NET</option>
-            <option value="C#">C#</option>
+    <Stack>
+      {
+        loading ?
+          (
+            <Stack>
+              <Skeleton height='100px' />
+              <Skeleton height='100px' />
+              <Skeleton height='100px' />
+              <Skeleton height='100px' />
+              <Skeleton height='100px' />
+              <Skeleton height='100px' />
+            </Stack>
+          )
+          :
 
-          </Select>
-          <Button ml={4} onClick={handleSortByName}>Sort from A-Z</Button>
-        </Flex>
-        {repositories.map((repo: Repository) => (
+          (
+            <Box>
+              <Flex alignItems="center" mb={4}>
+                <Select placeholder="Filter" onChange={(e) => handleFilterByLanguage(e.target.value)}>
+                  <option value="All">All</option>
+                  <option value="JavaScript">Javascript</option>
+                  <option value="TypeScript">TypeScript</option>
+                  <option value="SQL">SQL</option>
+                  <option value=".NET">.NET</option>
+                  <option value="C#">C#</option>
 
-          <Stack key={repo.url} pb={10} px={device==="mobile"?0:10} width={"full"} borderBottomWidth="1px" mt={2}>
+                </Select>
+                <Button ml={4} onClick={handleSortByName}>Sort from A-Z</Button>
+              </Flex>
+              {repositories.map((repo: Repository) => (
 
-            {/* FIRST ROW OF THE CARD */}
-            <Flex alignItems={"center"} justifyContent={"space-between"} >
-              <Box>
-                <Flex alignItems={"center"} gap={2}>
-                  <Heading color={"blue.600"} as={"h3"} fontSize={"xl"}>{repo.name}</Heading>
-                  {device==="desktop"&&<Tag variant='outline' borderRadius='full'>Public</Tag>}
-                </Flex>
-              </Box>
+                <Stack key={repo.url} pb={10} px={device === "mobile" ? 0 : 10} width={"full"} borderBottomWidth="1px" mt={2}>
 
-              {device==="desktop"&&<Box>
-                <Flex>
+                  {/* FIRST ROW OF THE CARD */}
+                  <Flex alignItems={"center"} justifyContent={"space-between"} >
+                    <Box>
+                      <Flex alignItems={"center"} gap={2}>
+                        <Heading color={"blue.600"} as={"h3"} fontSize={"xl"}><Link href={repo.url} target='_blank'>{repo.name}</Link></Heading>
+                        {device === "desktop" && <Tag variant='outline' borderRadius='full'>Public</Tag>}
+                      </Flex>
+                    </Box>
 
-                  <Button leftIcon={<FiStar />} variant='outline'>
-                    Star
-                  </Button>
-                  <IconButton aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
-                </Flex>
-              </Box>}
-            </Flex>
+                    {device === "desktop" && <Box>
+                      <Flex>
 
-            {/* SECOND ROW OF THE CARD */}
-            <Flex alignItems={"center"} justifyContent={"space-between"} >
-              <Box>
-                <Flex gap={2}>
-                  <Text>{repo.primaryLanguage?.name}</Text>
-                  <Text>Updated {formatDistanceToNow(new Date(repo.updatedAt))} ago</Text> 
-                </Flex>
-              </Box>
+                        <Button leftIcon={<FiStar />} variant='outline'>
+                          Star
+                        </Button>
+                        <IconButton aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
+                      </Flex>
+                    </Box>}
+                  </Flex>
 
-              {/* stats */}
-              <Box>
+                  {/* SECOND ROW OF THE CARD */}
+                  <Flex alignItems={"center"} justifyContent={"space-between"} >
+                    <Box>
+                      <Flex gap={2}>
+                        <Text>{repo.primaryLanguage?.name}</Text>
+                        <Text>Updated {formatDistanceToNow(new Date(repo.updatedAt))} ago</Text>
+                      </Flex>
+                    </Box>
 
-              </Box>
-            </Flex>
-          </Stack>
-        ))}
-      </Box>
-    )
+                    {/* stats */}
+                    <Box>
+
+                    </Box>
+                  </Flex>
+                </Stack>
+              ))}
+            </Box>
+          )
+      }
+    </Stack>
   )
 }
 

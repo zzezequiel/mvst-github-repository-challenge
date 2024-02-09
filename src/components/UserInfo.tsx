@@ -46,11 +46,14 @@ const UserInfo = () => {
                         <FiMapPin />
                         <Text>{selectedUser.location}</Text>
                     </Flex>
-                    <Flex alignItems={"center"} gap={2}>
-                        <LuBuilding2 />
-                        <Text>{selectedUser.company}</Text>
-                    </Flex>
-                    
+                    {
+                        selectedUser.company &&
+                        <Flex alignItems={"center"} gap={2}>
+                            <LuBuilding2 />
+                            <Text>{selectedUser.company}</Text>
+                        </Flex>
+                    }
+
 
                 </Stack>
 

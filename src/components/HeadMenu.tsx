@@ -9,7 +9,7 @@ interface HeadMenuProps extends FlexProps {
 const HeadMenu = ({ onOpen, ...rest }: HeadMenuProps) => {
     return (
       <Flex
-        ml={{ base: 0, md: 60 }}
+        ml={{ base: 0, md: 500 }}
         px={{ base: 4, md: 4 }}
         height="40"
         alignItems="center"

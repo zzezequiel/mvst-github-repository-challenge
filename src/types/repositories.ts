@@ -31,3 +31,16 @@ export interface PrimaryLanguage {
     user: User;
   }
   
+
+
+  
+  export interface Edge {
+    node: Repository;
+  }
+  
+  export interface SearchResponse {
+    search: {
+      edges: Edge[];
+    };
+  }
+  
