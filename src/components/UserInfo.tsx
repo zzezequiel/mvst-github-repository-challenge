@@ -1,5 +1,5 @@
 import { useUser } from '@/Context/UserContext';
-import { Avatar, Box, Button, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Heading, Image, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 import { BsThreeDots } from 'react-icons/bs';
 import { FiMail, FiMapPin, FiStar, FiUsers } from 'react-icons/fi';
@@ -32,7 +32,7 @@ const UserInfo = () => {
 
                 <Stack mt={5}>
                     <Flex alignItems={"center"} gap={2}>
-                        <Button width='full'>Follow</Button>
+                        <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","px")} borderColor={useColorModeValue('gray.300', 'gray.700')} width='full'>Follow</Button>
                         <BsThreeDots size={20} />
                     </Flex>
                 </Stack>

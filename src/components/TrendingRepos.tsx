@@ -1,7 +1,7 @@
 import useDeviceWidth from '@/Hooks/deviceWidth';
 import { Edge, Repository, SearchResponse } from '@/types';
 import { useQuery, gql } from '@apollo/client';
-import { Box, Button, Flex, Heading, IconButton, Link, Skeleton, Stack, Tag, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, IconButton, Link, Skeleton, Stack, Tag, Text, useColorModeValue } from '@chakra-ui/react';
 import { formatDistanceToNow } from 'date-fns';
 import { FiChevronDown, FiStar } from 'react-icons/fi';
 
@@ -57,7 +57,7 @@ const TrendingRepos = () => {
 
                             {trendingRepos?.map((repo: Repository) => (
 
-                                <Stack key={repo.url} pb={10} px={device === "mobile" ? 0 : 10} width={"full"} borderBottomWidth="1px" mt={2}>
+                                <Stack key={repo.url} pb={10} width={"full"} borderBottomWidth="1px" mt={2}>
 
                                     {/* FIRST ROW OF THE CARD */}
                                     <Flex alignItems={"center"} justifyContent={"space-between"} >
@@ -69,12 +69,11 @@ const TrendingRepos = () => {
                                         </Box>
 
                                         {device === "desktop" && <Box>
-                                            <Flex>
-
-                                                <Button leftIcon={<FiStar />} variant='outline'>
+                                            <Flex alignItems={"center"}>
+                                                <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')} borderEndRadius={0} borderRightWidth={"1px"} borderRightColor={useColorModeValue('gray.300', 'gray.700')} leftIcon={<FiStar />} variant='outline'>
                                                     Star
                                                 </Button>
-                                                <IconButton aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
+                                                <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')} borderLeftRadius={0} aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
                                             </Flex>
                                         </Box>}
                                     </Flex>

@@ -1,7 +1,7 @@
 // RepositoriesList.js
 import { useEffect, useState } from 'react';
 import { useLazyQuery, gql, useQuery } from '@apollo/client';
-import { Box, List, ListItem, Link, Spinner, Stack, Flex, Heading, Button, Tag, IconButton, Text, Select, Skeleton } from '@chakra-ui/react';
+import { Box, List, ListItem, Link, Spinner, Stack, Flex, Heading, Button, Tag, IconButton, Text, Select, Skeleton, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { useUser } from '@/Context/UserContext';
 import { Repository } from '@/types/repositories';
 import { FiChevronDown, FiStar } from 'react-icons/fi';
@@ -84,7 +84,7 @@ const RepositoriesList = () => {
 
   console.log("ACTUALREPOS", repositories)
   return (
-    <Stack>
+    <Stack px={device === "mobile" ? 0 : 60}>
       {
         loading ?
           (
@@ -102,20 +102,19 @@ const RepositoriesList = () => {
           (
             <Box>
               <Flex alignItems="center" mb={4}>
-                <Select placeholder="Filter" onChange={(e) => handleFilterByLanguage(e.target.value)}>
+                <Select backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')} placeholder="Filter" onChange={(e) => handleFilterByLanguage(e.target.value)}  width={{ base: '95%', md: '20%' }}>
                   <option value="All">All</option>
                   <option value="JavaScript">Javascript</option>
                   <option value="TypeScript">TypeScript</option>
                   <option value="SQL">SQL</option>
                   <option value=".NET">.NET</option>
                   <option value="C#">C#</option>
-
                 </Select>
-                <Button ml={4} onClick={handleSortByName}>Sort from A-Z</Button>
+                <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","0px")} borderColor={useColorModeValue('gray.300', 'gray.700')} ml={4} onClick={handleSortByName}>Sort from A-Z</Button>
               </Flex>
               {repositories.map((repo: Repository) => (
 
-                <Stack key={repo.url} pb={10} px={device === "mobile" ? 0 : 10} width={"full"} borderBottomWidth="1px" mt={2}>
+                <Stack key={repo.url} pb={10} width={"full"} borderBottomWidth="1px" mt={2}>
 
                   {/* FIRST ROW OF THE CARD */}
                   <Flex alignItems={"center"} justifyContent={"space-between"} >
@@ -127,12 +126,11 @@ const RepositoriesList = () => {
                     </Box>
 
                     {device === "desktop" && <Box>
-                      <Flex>
-
-                        <Button leftIcon={<FiStar />} variant='outline'>
+                      <Flex alignItems={"center"}>
+                        <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')}  borderEndRadius={0} borderRightWidth={"1px"} borderRightColor={useColorModeValue('gray.300', 'gray.700')} leftIcon={<FiStar />} variant='outline'>
                           Star
                         </Button>
-                        <IconButton aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
+                        <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')} borderLeftRadius={0} aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
                       </Flex>
                     </Box>}
                   </Flex>

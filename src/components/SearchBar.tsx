@@ -1,7 +1,7 @@
 import { useUser } from '@/Context/UserContext';
 import { User } from '@/types';
 import { gql, useLazyQuery } from '@apollo/client';
-import { Avatar, Box, Button, Fade, Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { Avatar, Box, Button, Fade, Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react'
 import Link from 'next/link';
 import React, { useState } from 'react'
 import { FiArrowLeft, FiLoader, FiSearch } from 'react-icons/fi'
@@ -70,15 +70,16 @@ const SearchBar = () => {
              * Button to restart the context. 
              */
             selectedUser &&
-            <IconButton aria-label='Back-home' icon={<FiArrowLeft />} onClick={() => handleUserIncontext(selectedUser, "DELETE")} />
+            <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","0px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Back-home' icon={<FiArrowLeft />} onClick={() => handleUserIncontext(selectedUser, "DELETE")} />
           }
           {
-            loading ? <IconButton aria-label='Loading' icon={<FiLoader />} />
+            loading ? <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","0px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Loading' icon={<FiLoader />} />
               :
-              <MenuButton onClick={handleSearch} as={Button}><FiSearch /></MenuButton>
+              <MenuButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("1px","0px")} borderColor={useColorModeValue('gray.300', 'gray.700')} onClick={handleSearch} as={Button}><FiSearch /></MenuButton>
           }
 
           <Input
+          borderColor={useColorModeValue('gray.300', 'gray.700')}
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
