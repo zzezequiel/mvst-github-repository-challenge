@@ -1,8 +1,8 @@
 import { useUser } from '@/Context/UserContext';
-import { Avatar, Box, Button, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import { BsThreeDots } from 'react-icons/bs';
-import { FiMapPin, FiStar, FiUsers } from 'react-icons/fi';
+import { FiMail, FiMapPin, FiStar, FiUsers } from 'react-icons/fi';
 import { LuBuilding2, LuDot } from 'react-icons/lu';
 
 interface Props { }
@@ -13,12 +13,17 @@ const UserInfo = () => {
     return (
         selectedUser
             ?
-            <Box height={"10vh"} width={"full"} mt={20} >
+            <Box height={"10vh"} width={"full"} mt={40} >
                 <Flex alignItems={"center"} justifyContent={"center"}>
-                    <Avatar src={selectedUser.avatarUrl} size="2xl" />
+                    <Image
+                        borderRadius='full'
+                        boxSize='280px'
+                        src={selectedUser.avatarUrl}
+                        alt='Dan Abramov'
+                    />
                 </Flex>
 
-                <Stack mt={5}>
+                <Stack mt={10}>
                     <Heading as={"h2"} size={"lg"}>{selectedUser.name}</Heading>
                     <Text>{selectedUser.login}</Text>
 
@@ -51,6 +56,13 @@ const UserInfo = () => {
                         <Flex alignItems={"center"} gap={2}>
                             <LuBuilding2 />
                             <Text>{selectedUser.company}</Text>
+                        </Flex>
+                    }
+                    {
+                        selectedUser.email &&
+                        <Flex alignItems={"center"} gap={2}>
+                            <FiMail />
+                            <Text>{selectedUser.email}</Text>
                         </Flex>
                     }
 

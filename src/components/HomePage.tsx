@@ -33,7 +33,11 @@ const HomePage = () => {
       </Drawer>
       {/* mobilenav */}
       <HeadMenu onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 500 }} p="4">
+      <Box ml={{ base: 0, md: 500 }}
+        p="4"
+        borderLeftWidth="1px"
+        borderRightColor={useColorModeValue('gray.200', 'gray.700')}
+        >
         {/* SEARCH INFORMATION */}
         <RepositoriesList />
       </Box>

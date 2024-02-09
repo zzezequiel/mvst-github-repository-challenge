@@ -15,6 +15,7 @@ const HeadMenu = ({ onOpen, ...rest }: HeadMenuProps) => {
         alignItems="center"
         bg={useColorModeValue('white', 'gray.900')}
         borderBottomWidth="1px"
+        borderLeftWidth="1px"
         borderTopWidth="1px"
         borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
         justifyContent={{ base: 'space-between', md: 'center' }}

@@ -9,10 +9,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <Box
         transition="3s ease"
         bg={useColorModeValue('white', 'gray.900')}
-        borderRight="1px"
-        borderTopWidth="1px"
-        borderTopColor={useColorModeValue('gray.200', 'gray.700')}
-        borderRightColor={useColorModeValue('gray.200', 'gray.700')}
+       
         w={{ base: 'full', md: 500 }}
         pos="fixed"
         h="full"
