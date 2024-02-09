@@ -1,7 +1,7 @@
 // RepositoriesList.js
 import { useEffect, useState } from 'react';
 import { useLazyQuery, gql, useQuery } from '@apollo/client';
-import { Box, List, ListItem, Link, Spinner, Stack, Flex, Heading, Button, Tag, IconButton, Text } from '@chakra-ui/react';
+import { Box, List, ListItem, Link, Spinner, Stack, Flex, Heading, Button, Tag, IconButton, Text, Select } from '@chakra-ui/react';
 import { useUser } from '@/Context/UserContext';
 import { Repository } from '@/types/repositories';
 import { FiChevronDown, FiStar } from 'react-icons/fi';
@@ -48,9 +48,14 @@ const RepositoriesList = () => {
   /**
    *  makes the query again if the context changes
    */
+  const [repositories, setRepositories] = useState<Repository[]>([]);
+
   useEffect(() => {
-    refetch();
-  }, [selectedUser, refetch]);
+    if (data) {
+      setRepositories(data.user.repositories.nodes);
+    }
+  }, [data]);
+
 
   if (!selectedUser) {
     return <p>Select a user</p>;
@@ -59,16 +64,41 @@ const RepositoriesList = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const repositories = data.user.repositories.nodes;
 
+  const handleFilterByLanguage = (language: string) => {
+    if (language === "All") {
+      setRepositories(data.user.repositories.nodes);
+    } else {
 
+      const filteredRepositories = data.user.repositories.nodes.filter((repo: Repository) => repo.primaryLanguage?.name === language);
+      setRepositories(filteredRepositories);
+    }
+  };
 
+  const handleSortByName = () => {
+    const sortedRepositories = [...repositories].sort((a, b) => a.name.localeCompare(b.name));
+    setRepositories(sortedRepositories);
+  };
+
+  console.log("ACTUALREPOS", repositories)
   return (
     repositories ?
       <Box>
+        <Flex alignItems="center" mb={4}>
+          <Select placeholder="Filter" onChange={(e) => handleFilterByLanguage(e.target.value)}>
+            <option value="All">All</option>
+            <option value="JavaScript">Javascript</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="SQL">SQL</option>
+            <option value=".NET">.NET</option>
+            <option value="C#">C#</option>
+
+          </Select>
+          <Button ml={4} onClick={handleSortByName}>Sort from A-Z</Button>
+        </Flex>
         {repositories.map((repo: Repository) => (
-          
-          <Stack key={repo.name}pb={10} px={10} width={"full"} borderBottomWidth="1px" mt={2}>
+
+          <Stack key={repo.url} pb={10} px={10} width={"full"} borderBottomWidth="1px" mt={2}>
 
             {/* FIRST ROW OF THE CARD */}
             <Flex alignItems={"center"} justifyContent={"space-between"} >
@@ -93,10 +123,10 @@ const RepositoriesList = () => {
             {/* SECOND ROW OF THE CARD */}
             <Flex alignItems={"center"} justifyContent={"space-between"} >
               <Box>
-                  <Flex gap={2}>
-                    <Text>{repo.primaryLanguage?.name}</Text>
-                    <Text>Updated {formatDistanceToNow(new Date(repo.updatedAt))} ago</Text> {/* Formatea la fecha updatedAt */}
-                  </Flex>
+                <Flex gap={2}>
+                  <Text>{repo.primaryLanguage?.name}</Text>
+                  <Text>Updated {formatDistanceToNow(new Date(repo.updatedAt))} ago</Text> 
+                </Flex>
               </Box>
 
               {/* stats */}
