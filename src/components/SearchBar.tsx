@@ -1,3 +1,4 @@
+import { useUser } from '@/Context/UserContext';
 import { gql, useLazyQuery } from '@apollo/client';
 import { Flex, IconButton, Input } from '@chakra-ui/react'
 import React, { useState } from 'react'
@@ -14,6 +15,13 @@ const SearchBar = () => {
           login
           name
           avatarUrl
+          repositories(first: 10) {
+            nodes {
+              name
+              description
+              url
+            }
+          }
         }
       }
     }
@@ -27,7 +35,13 @@ const SearchBar = () => {
     const handleSearch = () => {
         searchUsers({ variables: { queryString: searchTerm } });
     };
-    console.log(data)
+    
+
+    const { setSelectedUsername } = useUser();
+
+  const saveUserIncontext = (username:string) => {
+    setSelectedUsername(username);
+  };
     return (
         <>
             <Flex>
@@ -40,13 +54,13 @@ const SearchBar = () => {
                 <IconButton onClick={handleSearch} aria-label='Search database' icon={<FiSearch />} />
             </Flex>
 
-            {loading && <p>Cargando...</p>}
+            {loading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
 
             {data && (
                 <ul>
-                    {data.search.nodes.map((user:any) => (
-                        <li key={user.login}>
+                    {data.search.nodes.map((user: any) => (
+                        <li key={user.login} onClick={() => saveUserIncontext(user.login)}>
                             <img src={user.avatarUrl} alt="Avatar" />
                             <a href={`https://github.com/${user.login}`}>{user.login}</a>
                         </li>

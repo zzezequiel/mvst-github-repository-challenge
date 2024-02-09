@@ -11,6 +11,7 @@ import {
 
 import SidebarContent from './SidebarContent'
 import HeadMenu from './HeadMenu'
+import RepositoriesList from './RepositoriesList'
 
 
 const HomePage = () => {
@@ -34,6 +35,7 @@ const HomePage = () => {
       <HeadMenu onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {/* SEARCH INFORMATION */}
+        <RepositoriesList />
       </Box>
     </Box>
   )
