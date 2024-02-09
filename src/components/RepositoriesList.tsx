@@ -84,7 +84,7 @@ const RepositoriesList = () => {
 
   console.log("ACTUALREPOS", repositories)
   return (
-    <Stack px={device === "mobile" ? 0 : 60}>
+    <Stack px={device === "mobile" ? 0 : 20}>
       {
         loading ?
           (

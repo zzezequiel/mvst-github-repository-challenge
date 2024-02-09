@@ -4,6 +4,7 @@ import React from 'react'
 import { BsThreeDots } from 'react-icons/bs';
 import { FiMail, FiMapPin, FiStar, FiUsers } from 'react-icons/fi';
 import { LuBuilding2, LuDot } from 'react-icons/lu';
+import WelcomeText from './WelcomeText';
 
 interface Props { }
 
@@ -71,9 +72,7 @@ const UserInfo = () => {
 
             </Box>
             :
-            <Box>
-
-            </Box>
+            <WelcomeText />
     )
 }
 

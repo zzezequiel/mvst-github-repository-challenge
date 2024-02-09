@@ -37,7 +37,7 @@ const TrendingRepos = () => {
     const trendingRepos = data?.search.edges.map((edge: Edge) => edge.node);
     console.log(trendingRepos)
     return (
-        <Stack>
+        <Stack px={device === "mobile" ? 0 : 20}>
             {
                 loading ?
                     (
@@ -51,9 +51,9 @@ const TrendingRepos = () => {
                         </Stack>
                     )
                     :
+
                     (
-                        <Stack>
-                            <Heading as={"h1"} textAlign={"center"} py={10}>Trending Repositories</Heading>
+                        <Box>
 
                             {trendingRepos?.map((repo: Repository) => (
 
@@ -70,10 +70,10 @@ const TrendingRepos = () => {
 
                                         {device === "desktop" && <Box>
                                             <Flex alignItems={"center"}>
-                                                <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')} borderEndRadius={0} borderRightWidth={"1px"} borderRightColor={useColorModeValue('gray.300', 'gray.700')} leftIcon={<FiStar />} variant='outline'>
+                                                <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.100', 'gray.700')} borderEndRadius={0} borderRightWidth={"1px"} borderRightColor={useColorModeValue('gray.300', 'gray.700')} leftIcon={<FiStar />} variant='outline'>
                                                     Star
                                                 </Button>
-                                                <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.300', 'gray.700')} borderLeftRadius={0} aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
+                                                <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} borderColor={useColorModeValue('gray.100', 'gray.700')} borderLeftRadius={0} aria-label='arrow down' icon={<FiChevronDown />} variant={"outline"} />
                                             </Flex>
                                         </Box>}
                                     </Flex>
@@ -94,7 +94,7 @@ const TrendingRepos = () => {
                                     </Flex>
                                 </Stack>
                             ))}
-                        </Stack>
+                        </Box>
                     )
             }
         </Stack>
