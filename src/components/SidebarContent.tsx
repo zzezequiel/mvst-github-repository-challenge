@@ -1,4 +1,5 @@
 import { Box, BoxProps, CloseButton, Flex, useColorModeValue } from "@chakra-ui/react"
+import UserInfo from "./UserInfo";
 
 interface SidebarProps extends BoxProps {
     onClose: () => void
@@ -12,12 +13,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         borderTopWidth="1px"
         borderTopColor={useColorModeValue('gray.200', 'gray.700')}
         borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-        w={{ base: 'full', md: 80 }}
+        w={{ base: 'full', md: 500 }}
         pos="fixed"
         h="full"
         {...rest}>
         <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
           {/* USER PHOTO AND NAME */}
+          <UserInfo />
           <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
         </Flex>
   

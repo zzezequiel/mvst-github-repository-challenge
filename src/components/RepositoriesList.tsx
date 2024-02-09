@@ -7,27 +7,31 @@ import { useUser } from '@/Context/UserContext';
 
 
 const RepositoriesList = () => {
+  /**
+   * @requires $username - username clicked, storage in context. 
+   * @returns
+   */
     const GET_USER_REPOS = gql`
-  query getUserRepos($username: String!) {
-    user(login: $username) {
-      repositories(first: 5) {
-        nodes {
-          name
-          description
-          url
+      query getUserRepos($username: String!) {
+        user(login: $username) {
+          repositories(first: 10) {
+            nodes {
+              name
+              description
+              url
+            }
+          }
         }
       }
-    }
-  }
-`;
+    `;
 
     /**
      *  I use "useQuery" just because the method first searh in cache if tje query was made before, so it prevent to make the query again.
      */
-    const { selectedUsername } = useUser();
+    const { selectedUser } = useUser();
   const { loading, error, data, refetch } = useQuery(GET_USER_REPOS, {
-    variables: { username: selectedUsername },
-    skip: !selectedUsername // Evita realizar la consulta si no hay un usuario seleccionado
+    variables: { username: selectedUser?.login },
+    skip: !selectedUser // Evita realizar la consulta si no hay un usuario seleccionado
   });
 
   /**
@@ -35,9 +39,9 @@ const RepositoriesList = () => {
    */
   useEffect(() => {
     refetch();
-  }, [selectedUsername, refetch]);
+  }, [selectedUser, refetch]);
 
-  if (!selectedUsername) {
+  if (!selectedUser) {
     return <p>Select a user</p>;
   }
 
