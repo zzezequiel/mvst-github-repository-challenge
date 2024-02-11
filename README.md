@@ -1,6 +1,6 @@
 # Github Repositories Challenge
 
-This is a simple web application built with React and Vite. It uses TypeScript for type safety and Tailwind CSS for styling, and it is designed to help users search for GitHub users and view their repositories. The application utilizes the official GitHub API to fetch the data, and it allows the user to filter through the repositories by name using a search bar. It also features responsive design for mobile and desktop screens.
+The goal is to allow the user to type the name of a GitHub user and display their repositories in a list. The user should then be able to filter the repositories by name and/or programming language. The interface should be responsive and follow the principles of good user experience. The official GitHub API must be used to obtain the repositories per user.
 
 ## Technologies Used
 The following technologies and libraries were used to build this application:
