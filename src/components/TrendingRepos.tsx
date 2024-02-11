@@ -4,6 +4,7 @@ import { useQuery, gql } from '@apollo/client';
 import { Box, Button, Flex, Heading, IconButton, Link, Skeleton, Stack, Tag, Text, useColorModeValue } from '@chakra-ui/react';
 import { formatDistanceToNow } from 'date-fns';
 import { FiChevronDown, FiStar } from 'react-icons/fi';
+import { TbStars } from 'react-icons/tb';
 
 
 const TrendingRepos = () => {
@@ -35,7 +36,16 @@ const TrendingRepos = () => {
     if (error) return <p>Error: {error.message}</p>;
 
     const trendingRepos = data?.search.edges.map((edge: Edge) => edge.node);
-    console.log(trendingRepos)
+
+    function formatNumber(number: number) {
+        if (number < 1000) {
+            return number.toString();
+        } else if (number < 1000000) {
+            return (number / 1000).toFixed(1) + 'k';
+        } else {
+            return (number / 1000000).toFixed(1) + 'M';
+        }
+    }
     return (
         <Stack px={device === "mobile" ? 0 : 20}>
             {
@@ -56,7 +66,7 @@ const TrendingRepos = () => {
                         <Box>
                             <Heading as={"h1"} fontSize={35} textAlign={"center"} p={5}>Trending Repositories</Heading>
                             {trendingRepos?.map((repo: Repository) => (
-                                
+
                                 <Stack key={repo.url} pb={10} width={"full"} borderBottomWidth="1px" mt={2}>
 
                                     {/* FIRST ROW OF THE CARD */}
@@ -87,9 +97,12 @@ const TrendingRepos = () => {
                                             </Flex>
                                         </Box>
 
-                                        {/* stats */}
+                                        {/* Starreds */}
                                         <Box>
-
+                                            <Flex gap={2} alignItems={"center"}>
+                                                <Text>{formatNumber(repo.stargazerCount)}</Text>
+                                                <TbStars size={25} />
+                                            </Flex>
                                         </Box>
                                     </Flex>
                                 </Stack>

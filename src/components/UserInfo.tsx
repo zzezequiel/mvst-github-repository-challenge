@@ -1,5 +1,5 @@
 import { useUser } from '@/Context/UserContext';
-import { Avatar, Box, Button, Flex, Heading, Image, Stack, Text, useColorModeValue } from '@chakra-ui/react'
+import { Link, Box, Button, Flex, Heading, Image, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 import { BsThreeDots } from 'react-icons/bs';
 import { FiMail, FiMapPin, FiStar, FiUsers } from 'react-icons/fi';
@@ -33,7 +33,9 @@ const UserInfo = () => {
 
                 <Stack mt={5}>
                     <Flex alignItems={"center"} gap={2}>
-                        <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px","1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} width='full'>Follow</Button>
+                        <Link  href={`https://github.com/${selectedUser.login}`} target='_blank' width='full'>
+                            <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} width='full'>Follow</Button>
+                        </Link>
                         <BsThreeDots size={20} />
                     </Flex>
                 </Stack>
@@ -48,10 +50,14 @@ const UserInfo = () => {
                 </Stack>
 
                 <Stack mt={5}>
-                    <Flex alignItems={"center"} gap={2}>
-                        <FiMapPin />
-                        <Text>{selectedUser.location}</Text>
-                    </Flex>
+
+                    {
+                        selectedUser.location &&
+                        <Flex alignItems={"center"} gap={2}>
+                            <FiMapPin />
+                            <Text>{selectedUser.location}</Text>
+                        </Flex>
+                    }
                     {
                         selectedUser.company &&
                         <Flex alignItems={"center"} gap={2}>
