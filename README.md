@@ -1,40 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Github Repositories Challenge
 
-## Getting Started
+This is a simple web application built with React and Vite. It uses TypeScript for type safety and Tailwind CSS for styling, and it is designed to help users search for GitHub users and view their repositories. The application utilizes the official GitHub API to fetch the data, and it allows the user to filter through the repositories by name using a search bar. It also features responsive design for mobile and desktop screens.
 
-First, run the development server:
+## Technologies Used
+The following technologies and libraries were used to build this application:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [NextJs](https://nextjs.org/): A React framework for building full-stack web applications.
+- [Vercel](https://vercel.com/): A cloud platform for static sites and serverless functions.
+- [TypeScript](https://www.typescriptlang.org/) : A superset of JavaScript that adds optional static typing and other features to the language.
+- [Chakra UI](https://chakra-ui.com/): A utility-first CSS framework that makes it easy to style web applications.
+- [Apolo](https://www.apollographql.com/): A comprehensive state management library for JavaScript that enables you to manage both local and remote data with GraphQL.
+- [date-fns]: manipulating JavaScript dates in a browser & Node.js
+- [react-icons](https://react-icons.github.io/react-icons): A library of icons for React applications.
+
+## How to Run the Application
+To run the application, you will need to have Node.js installed on your computer. 
+Go to [NodeJS web page](https://nodejs.org/es/) to download and install the program.
+
+Then, follow these steps:
+
+1. Clone the repository to your local machine:
+```
+git clone https://github.com/zzezequiel/mvst-github-repository-challenge
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install the dependencies:
+```
+npm install
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+3. Start the development server:
+```
+npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+4. Open your browser and go to http://localhost:3000/.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Future Improvements
+Here are some possible future improvements that could be made to this application:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Component Reusability: Implementing a more efficient strategy for reusing components across different parts of the application.
 
-## Learn More
+- GraphQL Query Structure: Establishing a structured approach for crafting GraphQL queries to optimize data fetching and management within our application.
 
-To learn more about Next.js, take a look at the following resources:
+- Text Scripts Data File: Creating a dedicated file to store text scripts used in components and querys, providing better organization and easier maintenance.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Enhanced Search Functionality: Enhancing the search feature to enable searching by repository description or language.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Feedback
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+It was truly a pleasure to develop this project as a test for MVST. I thoroughly enjoyed the process and the opportunity to showcase my skills. It was the first time I use Apollo and it made handling data a lot easier. With Apollo, fetching data from the GitHub API was simple, fast and secure. Plus, it helped keep everything running smoothly by managing data effectively. I will using it again for sure! I'm eager to dive into new projects, tackle fresh challenges, and continue growing alongside MVST.
