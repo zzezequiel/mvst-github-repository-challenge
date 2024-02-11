@@ -15,7 +15,6 @@ const HomeLayaout: React.FC<LayoutProps> = (props) => {
       <Box as="main">
         {children}
       </Box>
-      {/* <Footer /> */}
     </Box>
   )
 

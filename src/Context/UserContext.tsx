@@ -5,6 +5,7 @@ import React, { createContext, useState, useContext, FC } from 'react';
 const UserContext = createContext<UserContextType | null>(null);
 
 export const UserProvider = ({ children }: any) => {
+    // user context to store the username selected in the searchbar field
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
     return (

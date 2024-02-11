@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 
+
+// Function to detect the width of the window
+// Help to handle some issues of the framework chakra ui 
 const useDeviceWidth = (thresholds = {
   0: 'mobile',
   720: 'tablet',

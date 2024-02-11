@@ -33,7 +33,7 @@ const UserInfo = () => {
 
                 <Stack mt={5}>
                     <Flex alignItems={"center"} gap={2}>
-                        <Link  href={`https://github.com/${selectedUser.login}`} target='_blank' width='full'>
+                        <Link href={`https://github.com/${selectedUser.login}`} target='_blank' width='full'>
                             <Button backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} width='full'>Follow</Button>
                         </Link>
                         <BsThreeDots size={20} />
