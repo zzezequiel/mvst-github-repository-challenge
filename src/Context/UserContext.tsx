@@ -1,12 +1,6 @@
 // UserContext.tsx
-import { User } from '@/types';
+import { User, UserContextType } from '@/types';
 import React, { createContext, useState, useContext, FC } from 'react';
-
-interface UserContextType {
-    selectedUser: User | null;
-    setSelectedUser: React.Dispatch<React.SetStateAction<User | null>>;
-  }
-
 
 const UserContext = createContext<UserContextType | null>(null);
 

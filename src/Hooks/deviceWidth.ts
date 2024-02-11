@@ -9,7 +9,7 @@ const useDeviceWidth = (thresholds = {
 
   useEffect(() => {
     function handleResize() {
-      
+
       const newWidth = Object.entries(thresholds)
         .reverse()
         .find(([threshold]) => window.innerWidth >= +threshold)?.[1];

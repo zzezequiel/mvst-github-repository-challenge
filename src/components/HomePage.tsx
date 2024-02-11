@@ -6,7 +6,6 @@ import {
   Drawer,
   DrawerContent,
   useDisclosure,
-  FlexProps,
 } from '@chakra-ui/react'
 
 import SidebarContent from './SidebarContent'
@@ -37,7 +36,7 @@ const HomePage = () => {
         p="4"
         borderLeftWidth="1px"
         borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-        >
+      >
         {/* SEARCH INFORMATION */}
         <RepositoriesList />
       </Box>

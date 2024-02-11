@@ -54,9 +54,9 @@ const TrendingRepos = () => {
 
                     (
                         <Box>
-
+                            <Heading as={"h1"} fontSize={35} textAlign={"center"} p={5}>Trending Repositories</Heading>
                             {trendingRepos?.map((repo: Repository) => (
-
+                                
                                 <Stack key={repo.url} pb={10} width={"full"} borderBottomWidth="1px" mt={2}>
 
                                     {/* FIRST ROW OF THE CARD */}

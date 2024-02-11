@@ -54,11 +54,11 @@ const SearchBar = () => {
    * @param method  POST: Set the username clicked, DELETE: restart the context to null
    */
   const handleUserIncontext = (user: User, method: string) => {
-    
-    if(method === "POST"){
+
+    if (method === "POST") {
       setSelectedUser(null);
       setSelectedUser(user);
-    } 
+    }
     method === "DELETE" && setSelectedUser(null);
   };
   return (
@@ -70,16 +70,16 @@ const SearchBar = () => {
              * Button to restart the context. 
              */
             selectedUser &&
-            <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px","1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Back-home' icon={<FiArrowLeft />} onClick={() => handleUserIncontext(selectedUser, "DELETE")} />
+            <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Back-home' icon={<FiArrowLeft />} onClick={() => handleUserIncontext(selectedUser, "DELETE")} />
           }
           {
-            loading ? <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px","1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Loading' icon={<FiLoader />} />
+            loading ? <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Loading' icon={<FiLoader />} />
               :
-              <MenuButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px","1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} onClick={handleSearch} as={Button}><FiSearch /></MenuButton>
+              <MenuButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} onClick={handleSearch} as={Button}><FiSearch /></MenuButton>
           }
 
           <Input
-          borderColor={useColorModeValue('gray.300', 'gray.700')}
+            borderColor={useColorModeValue('gray.300', 'gray.700')}
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
