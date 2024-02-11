@@ -63,50 +63,51 @@ const SearchBar = () => {
   };
   return (
     <Box width={"lg"} ml={2}>
-      <Menu>
-        <Flex gap={2}>
-          {
-            /**
-             * Button to restart the context. 
-             */
-            selectedUser &&
-            <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Back-home' icon={<FiArrowLeft />} onClick={() => handleUserIncontext(selectedUser, "DELETE")} />
-          }
-          {
-            loading ? <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Loading' icon={<FiLoader />} />
-              :
-              <MenuButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} onClick={handleSearch} as={Button}><FiSearch /></MenuButton>
-          }
+      <form>
+        <Menu>
+          <Flex gap={2}>
+            {
+              /**
+               * Button to restart the context. 
+              */
+              selectedUser &&
+              <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Back-home' icon={<FiArrowLeft />} onClick={() => handleUserIncontext(selectedUser, "DELETE")} />
+            }
+            {
+              loading ? <IconButton backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} aria-label='Loading' icon={<FiLoader />} />
+                :
+                <MenuButton role={"button"} type='submit' backgroundColor={useColorModeValue('gray.100', 'gray.900')} border={useColorModeValue("0px", "1px")} borderColor={useColorModeValue('gray.300', 'gray.700')} onClick={handleSearch} as={Button}><FiSearch /></MenuButton>
+            }
 
-          <Input
-            borderColor={useColorModeValue('gray.300', 'gray.700')}
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search users"
-          />
-        </Flex>
-
-
-        {error && <p>Error: {error.message}</p>}
-
-        {data && (
+            <Input
+              borderColor={useColorModeValue('gray.300', 'gray.700')}
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search users"
+            />
+          </Flex>
 
 
-          <MenuList w={"l"}>
+          {error && <p>Error: {error.message}</p>}
 
-            {data.search.nodes.map((user: any) => (
-              <MenuItem key={user.login} onClick={() => handleUserIncontext(user, "POST")} borderRadius="md" gap={5}>
-                <Avatar src={user.avatarUrl} />
-                <Text fontSize="lg">{user.login}</Text>
-              </MenuItem>
-            ))}
+          {data && (
 
-          </MenuList>
 
-        )}
-      </Menu>
+            <MenuList>
 
+              {data.search.nodes.map((user: any) => (
+                <MenuItem key={user.login} onClick={() => handleUserIncontext(user, "POST")} borderRadius="md" gap={5} >
+                  <Avatar src={user.avatarUrl} />
+                  <Text fontSize="lg">{user.login}</Text>
+                </MenuItem>
+              ))}
+
+            </MenuList>
+
+          )}
+        </Menu>
+      </form>
     </Box>
   )
 }
