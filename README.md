@@ -10,7 +10,7 @@ The following technologies and libraries were used to build this application:
 - [TypeScript](https://www.typescriptlang.org/) : A superset of JavaScript that adds optional static typing and other features to the language.
 - [Chakra UI](https://chakra-ui.com/): A utility-first CSS framework that makes it easy to style web applications.
 - [Apolo](https://www.apollographql.com/): A comprehensive state management library for JavaScript that enables you to manage both local and remote data with GraphQL.
-- [date-fns]: manipulating JavaScript dates in a browser & Node.js
+- [date-fns](https://date-fns.org/): manipulating JavaScript dates in a browser & Node.js
 - [react-icons](https://react-icons.github.io/react-icons): A library of icons for React applications.
 
 ## How to Run the Application
